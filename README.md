@@ -1,3 +1,14 @@
+# TRUEXERCISE USAGE
+POST request to /v1/company?activeOnly={yes|no}
+with body as specified in the requirement and x-api-key as required by the TruProxyApi.
+
+Query parameter activeOnly is optional and if not provided will default to 'no'
+
+h2 database console is available on the default path, i.e. http://localhost:8080/h2-console and can be used to verify or edit data saved by TruExercise.
+
+Unit and integration tests are minimal, but they give the idea. Time has run out.
+
+
 ## Goal
 Create a company search application using Spring Boot 3.1.3 or higher.
 
