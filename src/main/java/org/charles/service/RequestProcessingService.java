@@ -31,7 +31,7 @@ public class RequestProcessingService {
         if (companyRequest.getCompanyNumber() != null && !companyRequest.getCompanyNumber().isBlank()) {
             log.info("RequestProcessingService.processCompanyRequest - trying to fetch from cache");
             Company company = persistenceService.fetchCompany(companyRequest.getCompanyNumber());
-            if (company != null) {
+            if (company != null && (company.getCompany_status().equals("active") || !companyRequest.isActiveOnly())) {
                 companyResponse.setTotal_results(1);
                 companyResponse.addCompany(company);
             }
