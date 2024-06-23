@@ -54,7 +54,6 @@ public class OfficerDao {
         });
     }
 
-    //todo - make private??
     public static RowMapper<Officer> getMapper() {
         return new RowMapper<>() {
             @Override

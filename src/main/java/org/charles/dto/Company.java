@@ -27,7 +27,6 @@ public class Company {
         if (officers == null) {
             officers = new ArrayList<>();
         }
-        //todo ensure officer unique
         officers.add(officer);
     }
 
