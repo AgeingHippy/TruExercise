@@ -26,11 +26,7 @@ public class CompanyDao {
 
     public boolean companyExists(String companyNumber) {
         log.trace("CompanyDao.companyExists {}", companyNumber);
-        boolean found;
-
-        found = (findByCompanyNumber(companyNumber) != null);
-        
-        return found;
+        return (findByCompanyNumber(companyNumber) != null);
     }
 
     public Company findByCompanyNumber(String companyNumber) {
