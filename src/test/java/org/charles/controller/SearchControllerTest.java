@@ -46,7 +46,7 @@ public class SearchControllerTest {
             //call without x-api-key header
             mockMvc.perform(
                             MockMvcRequestBuilders
-                                    .post("/v1/officers")
+                                    .post("/v1/company")
                                     .queryParam("activeOnly", activeOnly)
                                     .content(String.format("{\"companyName\":\"%s\",\"companyNumber\":\"%s\"}", companyName, companyNumber))
                                     .contentType(MediaType.APPLICATION_JSON)
@@ -56,7 +56,7 @@ public class SearchControllerTest {
             //call without body
             mockMvc.perform(
                             MockMvcRequestBuilders
-                                    .post("/v1/officers")
+                                    .post("/v1/company")
                                     .header("x-api-key", apiKey)
                                     .queryParam("activeOnly", activeOnly)
                                     .contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +66,7 @@ public class SearchControllerTest {
             //call without query parameter
             mockMvc.perform(
                             MockMvcRequestBuilders
-                                    .post("/v1/officers")
+                                    .post("/v1/company")
                                     .header("x-api-key", apiKey)
                                     .content(String.format("{\"companyName\":\"%s\",\"companyNumber\":\"%s\"}", companyName, companyNumber))
                                     .contentType(MediaType.APPLICATION_JSON)
@@ -76,7 +76,7 @@ public class SearchControllerTest {
             //call with all specified
             mockMvc.perform(
                             MockMvcRequestBuilders
-                                    .post("/v1/officers")
+                                    .post("/v1/company")
                                     .header("x-api-key", apiKey)
                                     .queryParam("activeOnly", activeOnly)
                                     .content(String.format("{\"companyName\":\"%s\",\"companyNumber\":\"%s\"}", companyName, companyNumber))
@@ -134,7 +134,7 @@ public class SearchControllerTest {
 
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/v1/officers")
+                                .post("/v1/company")
                                 .header("x-api-key", "TestApiKey")
                                 .queryParam("activeOnly", "yes")
                                 .content(String.format("{\"companyName\":\"%s\",\"companyNumber\":\"%s\"}", "BBC", "123456"))

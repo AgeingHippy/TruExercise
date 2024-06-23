@@ -1,0 +1,596 @@
+{
+    "page_number": 1,
+    "kind": "search#companies",
+    "total_results": 20,
+    "items": [
+        {
+            "company_status": "active",
+            "address_snippet": "16 Churchill Way, Cardiff, Wales, CF10 2DX",
+            "date_of_creation": "2023-04-06",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "OC446750 - Incorporated on  6 April 2023",
+            "links": {
+                "self": "/company/OC446750"
+            },
+            "company_number": "OC446750",
+            "title": "DISSOLVED LLP",
+            "company_type": "llp",
+            "address": {
+                "premises": "16",
+                "postal_code": "CF10 2DX",
+                "country": "Wales",
+                "locality": "Cardiff",
+                "address_line_1": "Churchill Way"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "incorporated-on"
+            ]
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "Latif House, First Way, Wembley, Middlesex, United Kingdom, HA9 0JD",
+            "date_of_creation": "2018-11-20",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "11686010 - Dissolved on 26 April 2022",
+            "links": {
+                "self": "/company/11686010"
+            },
+            "company_number": "11686010",
+            "title": "DISSOLVED LTD",
+            "company_type": "ltd",
+            "address": {
+                "premises": "Latif House",
+                "postal_code": "HA9 0JD",
+                "country": "United Kingdom",
+                "locality": "Wembley",
+                "region": "Middlesex",
+                "address_line_1": "First Way"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "2022-04-26"
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "16  Churchill Way, Cardiff, Wales, CF10 2DX",
+            "date_of_creation": "2016-10-18",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "10432398 - Dissolved on 30 May 2017",
+            "links": {
+                "self": "/company/10432398"
+            },
+            "company_number": "10432398",
+            "title": "DISSOLVED LTD",
+            "company_type": "ltd",
+            "address": {
+                "premises": "16 ",
+                "postal_code": "CF10 2DX",
+                "country": "Wales",
+                "locality": "Cardiff",
+                "address_line_1": "Churchill Way"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "2017-05-30"
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "Langley House, Park Road, East Finchley, London, United Kingdom, N2 8EY",
+            "date_of_creation": "2011-06-14",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "07668221 - Dissolved on 20 March 2012",
+            "links": {
+                "self": "/company/07668221"
+            },
+            "company_number": "07668221",
+            "title": "DISSOLVED LIMITED",
+            "company_type": "ltd",
+            "address": {
+                "premises": "Langley House",
+                "postal_code": "N2 8EY",
+                "country": "United Kingdom",
+                "locality": "East Finchley",
+                "region": "London",
+                "address_line_1": "Park Road"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "2012-03-20"
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "Suite 4020 Mitchell House, 5 Mitchell Street, Edinburgh, Scotland, EH6 7BD",
+            "date_of_creation": "2020-02-24",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "SL034300 - Registered on 24 February 2020",
+            "links": {
+                "self": "/company/SL034300"
+            },
+            "company_number": "SL034300",
+            "title": "DISSOLVED BY PARTNERS IN 2021 & NOW OPERATING WITHOUT THEIR CONSENT LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "Suite 4020",
+                "postal_code": "EH6 7BD",
+                "country": "Scotland",
+                "locality": "Edinburgh",
+                "address_line_1": "Mitchell House",
+                "address_line_2": "5 Mitchell Street"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "Suite 7069 6 Margaret Street, Newry, County Down, Northern Ireland, BT34 1DF",
+            "date_of_creation": "2021-06-02",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "NL000800 - Registered on  2 June 2021",
+            "links": {
+                "self": "/company/NL000800"
+            },
+            "company_number": "NL000800",
+            "title": "DISSOLVED CREATEPRO LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "Suite 7069",
+                "postal_code": "BT34 1DF",
+                "country": "Northern Ireland",
+                "locality": "Newry",
+                "region": "County Down",
+                "address_line_1": "6 Margaret Street"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "Suite 23053 8 Shepherd Market, Mayfair, London, England, W1J 7JY",
+            "date_of_creation": "2021-05-26",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "LP021801 - Registered on 26 May 2021",
+            "links": {
+                "self": "/company/LP021801"
+            },
+            "company_number": "LP021801",
+            "title": "DISSOLVED WEHYPEIT LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "Suite 23053",
+                "postal_code": "W1J 7JY",
+                "country": "England",
+                "locality": "London",
+                "address_line_1": "8 Shepherd Market",
+                "address_line_2": "Mayfair"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "Apollo House Hallam Way, Whitehills Business Park, Blackpool, England, FY4 5FS",
+            "date_of_creation": "2017-10-03",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "10992816 - Dissolved on 26 October 2021",
+            "links": {
+                "self": "/company/10992816"
+            },
+            "company_number": "10992816",
+            "title": "DISSOLVED DESIGN LTD",
+            "company_type": "ltd",
+            "address": {
+                "premises": "Apollo House Hallam Way",
+                "postal_code": "FY4 5FS",
+                "country": "England",
+                "locality": "Blackpool",
+                "address_line_1": "Whitehills Business Park"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "2021-10-26"
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "96-98  Baker Street, London, England, W1U 6TJ",
+            "date_of_creation": "2018-01-03",
+            "matches": {
+                "title": [
+                    1,
+                    9
+                ]
+            },
+            "description": "11131680 - Dissolved on 11 June 2019",
+            "links": {
+                "self": "/company/11131680"
+            },
+            "company_number": "11131680",
+            "title": "DISSOLVED TM LIMITED",
+            "company_type": "ltd",
+            "address": {
+                "premises": "96-98 ",
+                "postal_code": "W1U 6TJ",
+                "country": "England",
+                "locality": "London",
+                "address_line_1": "Baker Street"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "2019-06-11"
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "2  Woodberry Grove, London, England, N12 0DR",
+            "date_of_creation": "2020-02-27",
+            "matches": {
+                "title": [
+                    1,
+                    17
+                ]
+            },
+            "description": "12486540 - Dissolved on 13 October 2020",
+            "links": {
+                "self": "/company/12486540"
+            },
+            "company_number": "12486540",
+            "title": "DISSOLVED28022020 LIMITED",
+            "company_type": "ltd",
+            "address": {
+                "premises": "2 ",
+                "postal_code": "N12 0DR",
+                "country": "England",
+                "locality": "London",
+                "address_line_1": "Woodberry Grove"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "2020-10-13"
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "50 Lothian Road, Festival Square, Edinburgh, EH3 9WJ",
+            "date_of_creation": "2022-02-08",
+            "matches": {
+                "title": [
+                    14,
+                    22
+                ]
+            },
+            "description": "SL035514 - Registered on  8 February 2022",
+            "links": {
+                "self": "/company/SL035514"
+            },
+            "company_number": "SL035514",
+            "title": "ARTEMIS (GC) DISSOLVED LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "50",
+                "postal_code": "EH3 9WJ",
+                "locality": "Edinburgh",
+                "address_line_1": "Lothian Road",
+                "address_line_2": "Festival Square"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "dissolved",
+            "address_snippet": "Bayview Hotel, Portballentrae Bushmills, Co Antrim",
+            "date_of_creation": "1953-06-26",
+            "matches": {
+                "title": [
+                    43,
+                    51
+                ]
+            },
+            "description": "NI003234 - Dissolved on ",
+            "links": {
+                "self": "/company/NI003234"
+            },
+            "company_number": "NI003234",
+            "title": "BAYVIEW HOTEL (N.I.) LIMITED *****COMPANY DISSOLVED 09/08/91*******",
+            "company_type": "ltd",
+            "address": {
+                "premises": "Bayview Hotel",
+                "locality": "Co Antrim",
+                "address_line_1": "Portballentrae Bushmills"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "dissolved-on"
+            ],
+            "date_of_cessation": "Unknown"
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "Epworth House, 25 City Road, London, EC1Y 1AR",
+            "date_of_creation": "1994-07-08",
+            "matches": {
+                "title": [
+                    9,
+                    17
+                ]
+            },
+            "description": "LP004673 - Registered on  8 July 1994",
+            "links": {
+                "self": "/company/LP004673"
+            },
+            "company_number": "LP004673",
+            "title": "BEGBIES DISSOLVED LIMITED PARTNERSHIP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "Epworth House",
+                "postal_code": "EC1Y 1AR",
+                "locality": "London",
+                "address_line_1": "25 City Road"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "50 Lothian Road, Festival Square, Edinburgh, EH3 9WJ",
+            "date_of_creation": "2014-04-03",
+            "matches": {
+                "title": [
+                    11,
+                    19
+                ]
+            },
+            "description": "SL016344 - Registered on  3 April 2014",
+            "links": {
+                "self": "/company/SL016344"
+            },
+            "company_number": "SL016344",
+            "title": "CALVIN F1 DISSOLVED LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "50",
+                "postal_code": "EH3 9WJ",
+                "locality": "Edinburgh",
+                "address_line_1": "Lothian Road",
+                "address_line_2": "Festival Square"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "50 Lothian Road, Festival Square, Edinburgh, EH3 9WJ",
+            "date_of_creation": "2014-01-31",
+            "matches": {
+                "title": [
+                    15,
+                    23
+                ]
+            },
+            "description": "SL015408 - Registered on 31 January 2014",
+            "links": {
+                "self": "/company/SL015408"
+            },
+            "company_number": "SL015408",
+            "title": "CALVIN F2 SLP DISSOLVED LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "50",
+                "postal_code": "EH3 9WJ",
+                "locality": "Edinburgh",
+                "address_line_1": "Lothian Road",
+                "address_line_2": "Festival Square"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "110 Thwaites Road, Oswaldtwistle, Accrington, England, BB5 4QR",
+            "date_of_creation": "2024-02-07",
+            "matches": {
+                "title": [
+                    10,
+                    18
+                ]
+            },
+            "description": "15471005 - Incorporated on  7 February 2024",
+            "links": {
+                "self": "/company/15471005"
+            },
+            "company_number": "15471005",
+            "title": "DARK AND DISSOLVED LTD",
+            "company_type": "ltd",
+            "address": {
+                "premises": "110",
+                "postal_code": "BB5 4QR",
+                "country": "England",
+                "locality": "Accrington",
+                "address_line_1": "Thwaites Road",
+                "address_line_2": "Oswaldtwistle"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "incorporated-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "18 Sanders House Pathfield Road, London, England, SW16 5NN",
+            "date_of_creation": "2021-01-19",
+            "matches": {
+                "title": [
+                    26,
+                    34
+                ]
+            },
+            "description": "13143700 - Incorporated on 19 January 2021",
+            "links": {
+                "self": "/company/13143700"
+            },
+            "company_number": "13143700",
+            "title": "DORMANT 13143700 WILL BE DISSOLVED LIMITED",
+            "company_type": "ltd",
+            "address": {
+                "premises": "18",
+                "postal_code": "SW16 5NN",
+                "country": "England",
+                "locality": "London",
+                "address_line_1": "Sanders House Pathfield Road"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "incorporated-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "50 Lothian Road, Festival Square, Edinburgh, EH3 9WJ",
+            "date_of_creation": "2013-11-14",
+            "matches": {
+                "title": [
+                    11,
+                    19
+                ]
+            },
+            "description": "SL014706 - Registered on 14 November 2013",
+            "links": {
+                "self": "/company/SL014706"
+            },
+            "company_number": "SL014706",
+            "title": "FALAN SLP DISSOLVED LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "50",
+                "postal_code": "EH3 9WJ",
+                "locality": "Edinburgh",
+                "address_line_1": "Lothian Road",
+                "address_line_2": "Festival Square"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "Glenlogie Farm, Littlewood, Alford, Aberdeenshire",
+            "date_of_creation": "1997-11-28",
+            "matches": {
+                "title": [
+                    16,
+                    24
+                ]
+            },
+            "description": "SL003170 - Registered on 28 November 1997",
+            "links": {
+                "self": "/company/SL003170"
+            },
+            "company_number": "SL003170",
+            "title": "GLENLOGIE FARM DISSOLVED LIMITED PARTNERSHIP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "Glenlogie Farm",
+                "locality": "Alford",
+                "region": "Aberdeenshire",
+                "address_line_1": "Littlewood"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        },
+        {
+            "company_status": "active",
+            "address_snippet": "50 Lothian Road, Festival Square, Edinburgh, EH3 9WJ",
+            "date_of_creation": "2019-02-18",
+            "matches": {
+                "title": [
+                    13,
+                    21
+                ]
+            },
+            "description": "SL033546 - Registered on 18 February 2019",
+            "links": {
+                "self": "/company/SL033546"
+            },
+            "company_number": "SL033546",
+            "title": "GS R100 SLP DISSOLVED LP",
+            "company_type": "limited-partnership",
+            "address": {
+                "premises": "50",
+                "postal_code": "EH3 9WJ",
+                "locality": "Edinburgh",
+                "address_line_1": "Lothian Road",
+                "address_line_2": "Festival Square"
+            },
+            "kind": "searchresults#company",
+            "description_identifier": [
+                "registered-on"
+            ]
+        }
+    ]
+}

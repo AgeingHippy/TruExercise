@@ -16,7 +16,7 @@ public class SearchController {
     @Autowired
     RequestProcessingService requestProcessingService;
 
-    @PostMapping(value = "/officers", produces = "application/json")
+    @PostMapping(value = "/company", produces = "application/json")
     public CompanyResponse getCompany(@RequestHeader(name = "x-api-key") String apiKey,
                @RequestParam(defaultValue = "no") String activeOnly,
                @RequestBody CompanyRequest companyRequest) {

@@ -1,0 +1,37 @@
+{
+    "etag": "c593fcb07e552ba403ec637cc234a639af8a8a5c",
+    "inactive_count": 1,
+    "links": {
+        "self": "/company/11686010/officers"
+    },
+    "kind": "officer-list",
+    "items_per_page": 35,
+    "items": [
+        {
+            "address": {
+                "premises": "Latif House",
+                "postal_code": "HA9 0JD",
+                "country": "United Kingdom",
+                "locality": "Wembley",
+                "region": "Middlesex",
+                "address_line_1": "First Way"
+            },
+            "name": "LATIF, Amir",
+            "appointed_on": "2018-11-20",
+            "officer_role": "director",
+            "links": {
+                "officer": {
+                    "appointments": "/officers/FWZRzT2olDefeKUnFhHcnvSfcCM/appointments"
+                }
+            },
+            "date_of_birth": {
+                "month": 9,
+                "year": 1986
+            },
+            "occupation": "Director",
+            "country_of_residence": "England",
+            "nationality": "British"
+        }
+    ],
+    "total_results": 1
+}
