@@ -67,6 +67,7 @@ public class TruProxyApiServiceTest {
         ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest);
 
         assert (1 == 1);
+        //todo - finish tests
 
     }
 }

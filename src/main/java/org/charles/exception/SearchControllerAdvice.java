@@ -18,40 +18,35 @@ public class SearchControllerAdvice {
     @ResponseStatus(value = HttpStatus.EXPECTATION_FAILED)
     public ResponseErrorMessage illegalArgumentExceptionResponse(IllegalArgumentException ex) {
         log.warn(ex.getMessage());
-        ResponseErrorMessage responseErrorMessage = new ResponseErrorMessage(HttpStatus.EXPECTATION_FAILED, ex.getMessage());
-        return responseErrorMessage;
+        return new ResponseErrorMessage(HttpStatus.EXPECTATION_FAILED, ex.getMessage());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseErrorMessage HttpMessageNotReadableExceptionResponse(Exception ex) {
         log.warn(ex.getMessage());
-        ResponseErrorMessage responseErrorMessage = new ResponseErrorMessage(HttpStatus.BAD_REQUEST, "Invalid request payload");
-        return responseErrorMessage;
+        return new ResponseErrorMessage(HttpStatus.BAD_REQUEST, "Invalid request payload");
     }
 
     @ExceptionHandler(MissingRequestHeaderException.class)
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
     public ResponseErrorMessage MissingRequestHeaderExceptionResponse(Exception ex) {
         log.warn(ex.getMessage());
-        ResponseErrorMessage responseErrorMessage = new ResponseErrorMessage(HttpStatus.FORBIDDEN, "API Key not provided");
-        return responseErrorMessage;
+        return new ResponseErrorMessage(HttpStatus.FORBIDDEN, "API Key not provided");
     }
 
     @ExceptionHandler(InternalServerException.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseErrorMessage InternalServerExceptionResponse(Exception ex) {
         log.error(ex.getMessage(), ex);
-        ResponseErrorMessage responseErrorMessage = new ResponseErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Sorry, an internal error has occurred.");
-        return responseErrorMessage;
+        return new ResponseErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Sorry, an internal error has occurred.");
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseErrorMessage exceptionResponse(Exception ex) {
         log.error(ex.getMessage(), ex);
-        ResponseErrorMessage responseErrorMessage = new ResponseErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Sorry, an internal error has occurred.");
-        return responseErrorMessage;
+        return new ResponseErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Sorry, an internal error has occurred.");
     }
 
 

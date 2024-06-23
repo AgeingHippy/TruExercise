@@ -56,7 +56,7 @@ public class OfficerDao {
 
     //todo - make private??
     public static RowMapper<Officer> getMapper() {
-        return new RowMapper<Officer>() {
+        return new RowMapper<>() {
             @Override
             public Officer mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Officer officer = new Officer();

@@ -6,8 +6,6 @@ import org.charles.dto.CompanyResponse;
 import org.charles.exception.InternalServerException;
 import org.charles.service.RequestProcessingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +17,7 @@ public class SearchController {
     RequestProcessingService requestProcessingService;
 
     @PostMapping(value = "/officers", produces = "application/json")
-    public CompanyResponse getCompany(@RequestHeader(name = "x-api-key", required = true) String apiKey,
+    public CompanyResponse getCompany(@RequestHeader(name = "x-api-key") String apiKey,
                @RequestParam(defaultValue = "no") String activeOnly,
                @RequestBody CompanyRequest companyRequest) {
 

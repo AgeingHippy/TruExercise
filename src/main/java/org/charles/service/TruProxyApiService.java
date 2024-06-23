@@ -37,11 +37,9 @@ public class TruProxyApiService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("x-api-key", URLEncoder.encode(companyRequest.getApiKey(), StandardCharsets.UTF_8));
-        HttpEntity<Object> entity = new HttpEntity<Object>(headers);
+        HttpEntity<Object> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<TruProxyApiCompanySearchResponse> response = restTemplate.exchange(url, HttpMethod.GET, entity, TruProxyApiCompanySearchResponse.class);
-
-        return response;
+        return restTemplate.exchange(url, HttpMethod.GET, entity, TruProxyApiCompanySearchResponse.class);
     }
 
     public ResponseEntity<TruProxyApiOfficerSearchResponse> getOfficers(String companyNumber, String apiKey) {
@@ -50,11 +48,10 @@ public class TruProxyApiService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("x-api-key", URLEncoder.encode(apiKey, StandardCharsets.UTF_8));
-        HttpEntity<Object> entity = new HttpEntity<Object>(headers);
+        HttpEntity<Object> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<TruProxyApiOfficerSearchResponse> response = restTemplate.exchange(url, HttpMethod.GET, entity, TruProxyApiOfficerSearchResponse.class);
 
-        return response;
+        return restTemplate.exchange(url, HttpMethod.GET, entity, TruProxyApiOfficerSearchResponse.class);
     }
 
 }

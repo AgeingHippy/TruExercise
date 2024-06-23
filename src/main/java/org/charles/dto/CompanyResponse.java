@@ -16,13 +16,13 @@ public class CompanyResponse {
 
     public CompanyResponse() {
         total_results = 0;
-        items = new ArrayList<Company>();
+        items = new ArrayList<>();
     }
 
     public void addCompany(Company company) {
         if (items == null) {
             log.debug("*********** INSTANTIATING LIST ***********");
-            items = new ArrayList<Company>();
+            items = new ArrayList<>();
         }
         items.add(company);
     }
