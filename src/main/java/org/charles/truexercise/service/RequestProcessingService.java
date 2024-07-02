@@ -63,9 +63,9 @@ public class RequestProcessingService {
         CompanyResponse companyResponse = new CompanyResponse();
 
         if (Objects.requireNonNull(truApicompanySearchResponseEntity.getBody()).getTotal_results() != 0) {
-            (searchByName //if true we need to filter by companyName //todo - convert check to case insensitive
+            (searchByName //if true we need to filter by companyName, else we filter by company number
                     ? (truApicompanySearchResponseEntity.getBody().getItems().stream().filter(truProxyCompany -> truProxyCompany.getTitle().equals(companyRequest.getCompanyName())).toList())
-                    : (truApicompanySearchResponseEntity.getBody().getItems()))
+                    : (truApicompanySearchResponseEntity.getBody().getItems().stream().filter(truProxyCompany -> truProxyCompany.getCompany_number().equals(companyRequest.getCompanyNumber())).toList()))
                     .forEach(truProxyApiCompany -> {
                         if (truProxyApiCompany.getCompany_status().equals("active") || !companyRequest.isActiveOnly()) {
                             Company company = TruProxyApiMapper.mapToCompany(truProxyApiCompany);
