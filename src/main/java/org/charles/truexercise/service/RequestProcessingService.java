@@ -52,7 +52,7 @@ public class RequestProcessingService {
         return companyResponse;
     }
 
-    private CompanyResponse getCompanies(CompanyRequest companyRequest) {
+    protected CompanyResponse getCompanies(CompanyRequest companyRequest) {
         log.trace("RequestProcessingService.getCompanies {}", companyRequest);
 
         boolean searchByName = (companyRequest.getCompanyName() != null && !companyRequest.getCompanyName().isBlank()) &&
@@ -80,7 +80,7 @@ public class RequestProcessingService {
         return companyResponse;
     }
 
-    private void getOfficers(Company company, String apiKey) {
+    protected void getOfficers(Company company, String apiKey) {
         log.trace("RequestProcessingService.getOfficers {} {}", company, Utilities.maskString(apiKey));
         ResponseEntity<TruProxyApiOfficerSearchResponse> truProxyApiOfficerSearchResponse = truProxyApiService.getOfficers(company.getCompany_number(), apiKey);
 

@@ -6,9 +6,7 @@ import org.charles.truexercise.dto.Officer;
 import org.charles.truexercise.dto.truProxyApi.TruProxyApiAddress;
 import org.charles.truexercise.dto.truProxyApi.TruProxyApiCompany;
 import org.charles.truexercise.dto.truProxyApi.TruProxyApiOfficer;
-import org.springframework.stereotype.Component;
 
-@Component
 public class TruProxyApiMapper {
 
     public static Company mapToCompany(TruProxyApiCompany truProxyApiCompany) {
