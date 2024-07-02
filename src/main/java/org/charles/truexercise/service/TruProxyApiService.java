@@ -3,9 +3,9 @@ package org.charles.truexercise.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.charles.truexercise.dto.CompanyRequest;
 import org.charles.truexercise.dto.truProxyApi.TruProxyApiCompanySearchResponse;
 import org.charles.truexercise.dto.truProxyApi.TruProxyApiOfficerSearchResponse;
+import org.charles.truexercise.utility.Utilities;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,17 +26,15 @@ public class TruProxyApiService {
 
     private final RestTemplate restTemplate;
 
-    public ResponseEntity<TruProxyApiCompanySearchResponse> getCompanies(CompanyRequest companyRequest) {
-        log.trace("TruProxyApiService.getCompanies");
+    public ResponseEntity<TruProxyApiCompanySearchResponse> getCompanies(String queryParameter, String apiKey) {
+        log.trace("TruProxyApiService.getCompanies {} {}", queryParameter, Utilities.maskString(apiKey));
 
-        String searchBy = ((companyRequest.getCompanyNumber() == null) || companyRequest.getCompanyNumber().isBlank())
-                ? URLEncoder.encode(companyRequest.getCompanyName(), StandardCharsets.UTF_8)
-                : companyRequest.getCompanyNumber();
+        String searchBy = URLEncoder.encode(queryParameter, StandardCharsets.UTF_8);
 
         String url = String.format(companySearchUrl, searchBy);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("x-api-key", URLEncoder.encode(companyRequest.getApiKey(), StandardCharsets.UTF_8));
+        headers.add("x-api-key", URLEncoder.encode(apiKey, StandardCharsets.UTF_8));
         HttpEntity<Object> entity = new HttpEntity<>(headers);
 
         return restTemplate.exchange(url, HttpMethod.GET, entity, TruProxyApiCompanySearchResponse.class);

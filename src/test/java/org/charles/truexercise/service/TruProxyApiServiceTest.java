@@ -64,7 +64,7 @@ public class TruProxyApiServiceTest {
                                 .body(companySearchResponse)
                 );
 
-        ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest);
+        ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest.getCompanyNumber(), companyRequest.getApiKey());
 
         assertEquals(1, Objects.requireNonNull(response.getBody()).getTotal_results());
         assertEquals(1, response.getBody().getItems().size());
@@ -91,7 +91,7 @@ public class TruProxyApiServiceTest {
                 );
 
 
-        ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest);
+        ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest.getCompanyName(), companyRequest.getApiKey());
 
         assertEquals(20, Objects.requireNonNull(response.getBody()).getTotal_results());
         assertEquals(20, response.getBody().getItems().size());
@@ -133,7 +133,7 @@ public class TruProxyApiServiceTest {
                 );
 
 
-        ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest);
+        ResponseEntity<TruProxyApiCompanySearchResponse> response = truProxyApiService.getCompanies(companyRequest.getCompanyName(), companyRequest.getApiKey());
 
         assertEquals(0, Objects.requireNonNull(response.getBody()).getTotal_results());
         assertNull(response.getBody().getItems());

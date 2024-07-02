@@ -3,10 +3,13 @@ package org.charles.truexercise.service;
 import org.charles.truexercise.dto.Company;
 import org.charles.truexercise.dto.CompanyRequest;
 import org.charles.truexercise.dto.CompanyResponse;
+import org.charles.truexercise.dto.truProxyApi.TruProxyApiCompanySearchResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -114,11 +117,43 @@ public class RequestProcessingServiceTest {
         assertNull(companyResponse.getItems());
     }
 
-//    @Test
-//    void verify_getCompanies_searchByCompanyNumberIfProvided() {
-//        CompanyRequest companyRequest = CompanyRequest.builder()
-//                .companyName("Test Company").companyNumber("1234").apiKey("TestApiKey").build();
-//
-//    }
+    @Test
+    void verify_getCompanies_searchByCompanyNumberIfProvided() {
+        CompanyRequest companyRequest = CompanyRequest.builder()
+                .companyName("Test Company").companyNumber("1234").apiKey("TestApiKey").build();
+
+        ResponseEntity<TruProxyApiCompanySearchResponse> truApicompanySearchResponseEntity =
+                ResponseEntity.status(HttpStatus.OK).body(TruProxyApiCompanySearchResponse.builder().page_number("1").total_results(0).build());
+
+        doReturn(truApicompanySearchResponseEntity).when(truProxyApiService).getCompanies(companyRequest.getCompanyNumber(),companyRequest.getApiKey());
+
+        requestProcessingService = new RequestProcessingService(truProxyApiService, persistenceService);
+
+        CompanyResponse companyResponse = requestProcessingService.getCompanies(companyRequest);
+
+        verify(truProxyApiService, times(1)).getCompanies(companyRequest.getCompanyNumber(),companyRequest.getApiKey());
+        assertEquals(0, companyResponse.getTotal_results());
+
+    }
+
+    @Test
+    void verify_getCompanies_searchByCompanyNameIfNumberNotProvided() {
+        CompanyRequest companyRequest = CompanyRequest.builder()
+                .companyName("Test Company").apiKey("TestApiKey").build();
+
+        ResponseEntity<TruProxyApiCompanySearchResponse> truApicompanySearchResponseEntity =
+                ResponseEntity.status(HttpStatus.OK).body(TruProxyApiCompanySearchResponse.builder().page_number("1").total_results(0).build());
+
+        doReturn(truApicompanySearchResponseEntity).when(truProxyApiService).getCompanies(companyRequest.getCompanyName(),companyRequest.getApiKey());
+
+        requestProcessingService = new RequestProcessingService(truProxyApiService, persistenceService);
+
+        CompanyResponse companyResponse = requestProcessingService.getCompanies(companyRequest);
+
+        verify(truProxyApiService, times(1)).getCompanies(companyRequest.getCompanyName(),companyRequest.getApiKey());
+        assertEquals(0, companyResponse.getTotal_results());
+
+    }
+
 }
 

@@ -55,10 +55,19 @@ public class RequestProcessingService {
     protected CompanyResponse getCompanies(CompanyRequest companyRequest) {
         log.trace("RequestProcessingService.getCompanies {}", companyRequest);
 
-        boolean searchByName = (companyRequest.getCompanyName() != null && !companyRequest.getCompanyName().isBlank()) &&
-                (companyRequest.getCompanyNumber() == null || companyRequest.getCompanyNumber().isBlank());
+        boolean searchByName;
+        String queryParameter;
 
-        ResponseEntity<TruProxyApiCompanySearchResponse> truApicompanySearchResponseEntity = truProxyApiService.getCompanies(companyRequest);
+        if ((companyRequest.getCompanyName() != null && !companyRequest.getCompanyName().isBlank()) &&
+                (companyRequest.getCompanyNumber() == null || companyRequest.getCompanyNumber().isBlank())) {
+            searchByName = true;
+            queryParameter = companyRequest.getCompanyName();
+        } else {
+            searchByName = false;
+            queryParameter = companyRequest.getCompanyNumber();
+        }
+
+        ResponseEntity<TruProxyApiCompanySearchResponse> truApicompanySearchResponseEntity = truProxyApiService.getCompanies(queryParameter, companyRequest.getApiKey());
 
         CompanyResponse companyResponse = new CompanyResponse();
 
