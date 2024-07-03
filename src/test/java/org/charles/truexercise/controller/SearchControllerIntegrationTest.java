@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -22,8 +23,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
@@ -37,6 +42,9 @@ public class SearchControllerIntegrationTest {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     private MockRestServiceServer mockServer;
 
@@ -116,16 +124,16 @@ public class SearchControllerIntegrationTest {
         assert (Objects.equals(company_11686010.getAddress().getCountry(), "United Kingdom"));
         //verify company 11686010 officers
         assert (company_11686010.getOfficers().size() == 1);
-        Officer officer = company_11686010.getOfficers().getFirst();
-        assert (Objects.equals(officer.getName(), "LATIF, Amir"));
-        assert (Objects.equals(officer.getOfficer_role(), "director"));
-        assert (Objects.equals(officer.getAppointed_on(), "2018-11-20"));
+        Officer officer_10432398 = company_11686010.getOfficers().getFirst();
+        assert (Objects.equals(officer_10432398.getName(), "LATIF, Amir"));
+        assert (Objects.equals(officer_10432398.getOfficer_role(), "director"));
+        assert (Objects.equals(officer_10432398.getAppointed_on(), "2018-11-20"));
         //Verify Officer Address
-        assert (Objects.equals(officer.getAddress().getPremises(), "Latif House"));
-        assert (Objects.equals(officer.getAddress().getAddress_line_1(), "First Way"));
-        assert (Objects.equals(officer.getAddress().getLocality(), "Wembley"));
-        assert (Objects.equals(officer.getAddress().getPostal_code(), "HA9 0JD"));
-        assert (Objects.equals(officer.getAddress().getCountry(), "United Kingdom"));
+        assert (Objects.equals(officer_10432398.getAddress().getPremises(), "Latif House"));
+        assert (Objects.equals(officer_10432398.getAddress().getAddress_line_1(), "First Way"));
+        assert (Objects.equals(officer_10432398.getAddress().getLocality(), "Wembley"));
+        assert (Objects.equals(officer_10432398.getAddress().getPostal_code(), "HA9 0JD"));
+        assert (Objects.equals(officer_10432398.getAddress().getCountry(), "United Kingdom"));
 
         //random checks on second company
         Company company_10432398 = response.getItems().getLast();
@@ -137,7 +145,60 @@ public class SearchControllerIntegrationTest {
         assert (Objects.equals(company_10432398.getOfficers().getFirst().getName(), "STEPHENS, Graham Robertson"));
 
 
-        //todo - verify data written to the database, and is written correctly
+        //Verify data written to the database, and is written correctly
+        //verify company data written correctly
+        List<Map<String, Object>> companiesList = jdbcTemplate.queryForList("SELECT * FROM company");
+        assertEquals(2, companiesList.size());
+        //verify first company data
+        assertEquals(company_11686010.getCompany_number(), companiesList.getFirst().get("company_number"));
+        assertEquals(company_11686010.getTitle(), companiesList.getFirst().get("title"));
+        assertEquals(company_11686010.getCompany_status(), companiesList.getFirst().get("company_status"));
+        assertEquals(company_11686010.getCompany_type(), companiesList.getFirst().get("company_type"));
+        assertEquals(company_11686010.getDate_of_creation(), companiesList.getFirst().get("date_of_creation"));
+        //and loosely verify second company
+        assertEquals(company_10432398.getCompany_number(), companiesList.getLast().get("company_number"));
+
+        //verify addresses written correctly
+        List<Map<String, Object>> addressList = jdbcTemplate.queryForList("SELECT * FROM address");
+        assertEquals(4,addressList.size());
+
+        //verify company # 10432398 address written correctly
+        Map<String,Object> address_10432398 = addressList.stream()
+                .filter(address -> companiesList.getFirst().get("address_id").equals(address.get("address_id")))
+                .findAny()
+                .orElse(null);
+        assertNotNull(address_10432398);
+        assert (Objects.equals(company_11686010.getAddress().getPremises(), address_10432398.get("premises")));
+        assert (Objects.equals(company_11686010.getAddress().getAddress_line_1(), address_10432398.get("address_line_1")));
+        assert (Objects.equals(company_11686010.getAddress().getLocality(), address_10432398.get("locality")));
+        assert (Objects.equals(company_11686010.getAddress().getPostal_code(), address_10432398.get("postal_code")));
+        assert (Objects.equals(company_11686010.getAddress().getCountry(), address_10432398.get("country")));
+
+        //Verify officers
+        List<Map<String, Object>> officerList = jdbcTemplate.queryForList("SELECT * FROM officer");
+        assertEquals(2,officerList.size());
+        //verify company # 10432398 Officer written correctly
+        Map<String,Object> officer_10432398_db = officerList.stream()
+                .filter(officer -> company_11686010.getCompany_number().equals(officer.get("company_number")))
+                .findAny()
+                .orElse(null);
+        assertNotNull(officer_10432398_db);
+        assertEquals(officer_10432398.getName(),officer_10432398_db.get("name"));
+        assertEquals(officer_10432398.getOfficer_role(),officer_10432398_db.get("officer_role"));
+        assertEquals(officer_10432398.getCompany_number(),officer_10432398_db.get("company_number"));
+        assertEquals(officer_10432398.getAppointed_on(),officer_10432398_db.get("appointed_on"));
+
+        //verify officer_10432398 address saved correctly
+        Map<String,Object> address_officer = addressList.stream()
+                .filter(address -> officer_10432398_db.get("address_id").equals(address.get("address_id")))
+                .findAny()
+                .orElse(null);
+        assertNotNull(address_officer);
+        assert (Objects.equals(officer_10432398.getAddress().getPremises(), address_officer.get("premises")));
+        assert (Objects.equals(officer_10432398.getAddress().getAddress_line_1(), address_officer.get("address_line_1")));
+        assert (Objects.equals(officer_10432398.getAddress().getLocality(), address_officer.get("locality")));
+        assert (Objects.equals(officer_10432398.getAddress().getPostal_code(), address_officer.get("postal_code")));
+        assert (Objects.equals(officer_10432398.getAddress().getCountry(), address_officer.get("country")));
     }
 
     //todo -write integration test fetching data from local db
