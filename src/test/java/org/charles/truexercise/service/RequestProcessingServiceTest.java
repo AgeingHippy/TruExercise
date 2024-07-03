@@ -155,5 +155,9 @@ public class RequestProcessingServiceTest {
 
     }
 
+    @Test
+    void verify_getCompanies_filterTruProxyResponseByName() {
+
+    }
 }
 

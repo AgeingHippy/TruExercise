@@ -48,7 +48,7 @@ public class TruProxyApiServiceTest {
     @Test
     void verifySearchByCompanyNumberIfProvided() throws IOException, URISyntaxException {
         String companySearchResponse;
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TruProxyApiCompanyNumberResponse.txt")) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("truProxyApiServiceTest_data/TruProxyApiCompanyNumberResponse.txt")) {
             companySearchResponse = new String(Objects.requireNonNull(inputStream).readAllBytes());
         }
 
@@ -74,7 +74,7 @@ public class TruProxyApiServiceTest {
     @Test
     void companiesAndAddressesAreMappedCorrectly() throws IOException, URISyntaxException {
         String companySearchResponse;
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TruProxyApiCompanyResponse.txt")) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("truProxyApiServiceTest_data/TruProxyApiCompanyResponse.txt")) {
             companySearchResponse = new String(Objects.requireNonNull(inputStream).readAllBytes());
         }
 
@@ -143,7 +143,7 @@ public class TruProxyApiServiceTest {
     @Test
     void verifyOfficersAndAddressesAreMappedCorrectly() throws IOException, URISyntaxException {
         String officerSearchResponse;
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TruProxyApiOfficerResponse.txt")) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("truProxyApiServiceTest_data/TruProxyApiOfficerResponse.txt")) {
             officerSearchResponse = new String(Objects.requireNonNull(inputStream).readAllBytes());
         }
 

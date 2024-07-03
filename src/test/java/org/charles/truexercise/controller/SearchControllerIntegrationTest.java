@@ -53,14 +53,14 @@ public class SearchControllerIntegrationTest {
         String officerSearch_10432398;
         String officerSearch_11686010;
 
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TruProxyApiCompanyResponse_Dissolved_ltd.txt")) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("searchControllerIntegrationTest_data/TruProxyApiCompanyResponse_Dissolved_ltd.txt")) {
             companySearchResponse = new String(Objects.requireNonNull(inputStream).readAllBytes());
         }
-        try (InputStream inputStream2 = getClass().getClassLoader().getResourceAsStream("TruProxyApiOfficers_10432398.txt")) {
+        try (InputStream inputStream2 = getClass().getClassLoader().getResourceAsStream("searchControllerIntegrationTest_data/TruProxyApiOfficers_10432398.txt")) {
             officerSearch_10432398 = new String(Objects.requireNonNull(inputStream2).readAllBytes());
         }
 
-        try (InputStream inputStream3 = getClass().getClassLoader().getResourceAsStream("TruProxyApiOfficers_11686010.txt")) {
+        try (InputStream inputStream3 = getClass().getClassLoader().getResourceAsStream("searchControllerIntegrationTest_data/TruProxyApiOfficers_11686010.txt")) {
             officerSearch_11686010 = new String(Objects.requireNonNull(inputStream3).readAllBytes());
         }
 
