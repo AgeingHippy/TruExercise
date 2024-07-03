@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TruProxyApiCompanySearchResponse {
-    private String page_number;
+    private int page_number;
     private String kind;
     private int total_results;
     private ArrayList<TruProxyApiCompany> items;

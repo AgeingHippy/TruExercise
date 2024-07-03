@@ -104,37 +104,45 @@ public class RequestProcessingService {
     }
 
     protected Company mapToCompany(TruProxyApiCompany truProxyApiCompany) {
-        Company company = new Company();
+        Company company = null;
 
-        company.setTitle(truProxyApiCompany.getTitle());
-        company.setCompany_number(truProxyApiCompany.getCompany_number());
-        company.setCompany_type(truProxyApiCompany.getCompany_type());
-        company.setCompany_status(truProxyApiCompany.getCompany_status());
-        company.setDate_of_creation(truProxyApiCompany.getDate_of_creation());
-        company.setAddress(mapToAddress(truProxyApiCompany.getAddress()));
+        if (truProxyApiCompany != null) {
+            company = new Company();
+            company.setTitle(truProxyApiCompany.getTitle());
+            company.setCompany_number(truProxyApiCompany.getCompany_number());
+            company.setCompany_type(truProxyApiCompany.getCompany_type());
+            company.setCompany_status(truProxyApiCompany.getCompany_status());
+            company.setDate_of_creation(truProxyApiCompany.getDate_of_creation());
+            company.setAddress(mapToAddress(truProxyApiCompany.getAddress()));
+        }
 
         return company;
     }
 
     protected Address mapToAddress(TruProxyApiAddress truProxyApiAddress) {
-        Address address = new Address();
+        Address address = null;
 
-        address.setPremises(truProxyApiAddress.getPremises());
-        address.setAddress_line_1(truProxyApiAddress.getAddress_line_1());
-        address.setLocality(truProxyApiAddress.getLocality());
-        address.setPostal_code(truProxyApiAddress.getPostal_code());
-        address.setCountry(truProxyApiAddress.getCountry());
+        if (truProxyApiAddress != null) {
+            address = new Address();
+            address.setPremises(truProxyApiAddress.getPremises());
+            address.setAddress_line_1(truProxyApiAddress.getAddress_line_1());
+            address.setLocality(truProxyApiAddress.getLocality());
+            address.setPostal_code(truProxyApiAddress.getPostal_code());
+            address.setCountry(truProxyApiAddress.getCountry());
+        }
 
         return address;
     }
 
     protected Officer mapToOfficer(TruProxyApiOfficer truProxyApiOfficer) {
-        Officer officer = new Officer();
-
-        officer.setName(truProxyApiOfficer.getName());
-        officer.setOfficer_role(truProxyApiOfficer.getOfficer_role());
-        officer.setAppointed_on(truProxyApiOfficer.getAppointed_on());
-        officer.setAddress(mapToAddress(truProxyApiOfficer.getAddress()));
+        Officer officer = null;
+        if (truProxyApiOfficer != null) {
+            officer = new Officer();
+            officer.setName(truProxyApiOfficer.getName());
+            officer.setOfficer_role(truProxyApiOfficer.getOfficer_role());
+            officer.setAppointed_on(truProxyApiOfficer.getAppointed_on());
+            officer.setAddress(mapToAddress(truProxyApiOfficer.getAddress()));
+        }
 
         return officer;
     }

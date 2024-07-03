@@ -182,4 +182,29 @@ public class TruProxyApiServiceTest {
         assertEquals("2017-04-04", response.getBody().getItems().getLast().getResigned_on());
     }
 
+    @Test
+    void verify_RobustOnNoOfficersFound() throws URISyntaxException {
+        //GIVEN: A company number with no officers
+        String companyNumber = "065XX244";
+        String apiKey = "testApiKey";
+
+        mockServer.expect(ExpectedCount.once(),
+                        requestTo(new URI("https://exercise.trunarrative.cloud/TruProxyAPI/rest/Companies/v1/Officers?CompanyNumber=065XX244")))
+                .andExpect(method(HttpMethod.GET))
+                .andExpect(header("x-api-key", apiKey))
+                .andRespond(
+                        withStatus(HttpStatus.OK)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body("{\"Errors\": [\"404 Not Found\"], \"StatusCode\": 500}")
+                );
+
+        //WHEN: No officers are returned
+        ResponseEntity<TruProxyApiOfficerSearchResponse> response = truProxyApiService.getOfficers(companyNumber, apiKey);
+
+        //THEN: Response is populated as expected and no exception occurs
+        assertEquals(0, Objects.requireNonNull(response.getBody()).getTotal_results());
+        assertEquals(0, Objects.requireNonNull(response.getBody()).getResigned_count());
+        assertNull(response.getBody().getItems());
+    }
+
 }
