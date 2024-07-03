@@ -378,7 +378,6 @@ public class RequestProcessingServiceTest {
 
     @Test
     void verifyMapToCompanyAndMapToAddressMapCorrectly() {
-        //todo - Split into 2 independent tests
         //GIVEN a TruProxy company with address
         TruProxyApiAddress truProxyApiAddress = TruProxyApiAddress.builder()
                 .premises("Premises 1")
@@ -415,7 +414,6 @@ public class RequestProcessingServiceTest {
 
     @Test
     void verifyMapToOfficerAndMapToAddressMapCorrectly() {
-        //todo - Split into 2 independent tests
         //GIVEN a TruProxy Officer with address
         TruProxyApiAddress truProxyApiAddress = TruProxyApiAddress.builder()
                 .premises("Premises 2")
