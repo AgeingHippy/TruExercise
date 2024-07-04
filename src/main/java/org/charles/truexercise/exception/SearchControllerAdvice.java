@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
 @ResponseBody
@@ -40,6 +41,13 @@ public class SearchControllerAdvice {
     public ResponseErrorMessage InternalServerExceptionResponse(Exception ex) {
         log.error(ex.getMessage(), ex);
         return new ResponseErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Sorry, an internal error has occurred.");
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ResponseErrorMessage NoResourceFoundExceptionResponse(Exception ex) {
+        log.error(ex.getMessage());
+        return new ResponseErrorMessage(HttpStatus.BAD_REQUEST, "Bad Request");
     }
 
     @ExceptionHandler(Exception.class)
