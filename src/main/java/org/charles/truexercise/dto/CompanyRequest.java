@@ -1,5 +1,6 @@
 package org.charles.truexercise.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import org.charles.truexercise.utility.Utilities;
@@ -11,7 +12,9 @@ import java.text.MessageFormat;
 public class CompanyRequest {
     private String companyName;
     private String companyNumber;
+    @JsonIgnore
     private String apiKey;
+    @JsonIgnore
     private boolean activeOnly;
 
     public void setActiveOnly(String activeOnly) {

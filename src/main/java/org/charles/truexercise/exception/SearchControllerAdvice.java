@@ -47,7 +47,7 @@ public class SearchControllerAdvice {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseErrorMessage NoResourceFoundExceptionResponse(Exception ex) {
         log.error(ex.getMessage());
-        return new ResponseErrorMessage(HttpStatus.BAD_REQUEST, "Bad Request");
+        return new ResponseErrorMessage(HttpStatus.BAD_REQUEST, "Resource not found");
     }
 
     @ExceptionHandler(Exception.class)

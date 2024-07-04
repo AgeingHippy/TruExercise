@@ -6,7 +6,11 @@ Query parameter activeOnly is optional and if not provided will default to 'no'
 
 h2 database console is available on the default path, i.e. http://localhost:8080/h2-console and can be used to verify or edit data saved by TruExercise.
 
-Unit and integration tests are minimal, but they give the idea. Time has run out.
+OpenAPI documentation is available on the default path http://localhost:8080/v3/api-docs
+
+Swagger UI available on the default path http://localhost:8080/swagger-ui/index.html
+
+
 
 
 ## Goal

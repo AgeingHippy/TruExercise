@@ -1,5 +1,7 @@
 package org.charles.truexercise.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.charles.truexercise.dto.CompanyRequest;
@@ -8,6 +10,7 @@ import org.charles.truexercise.service.RequestProcessingService;
 import org.charles.truexercise.exception.InternalServerException;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name="Company Search", description="TruExercise Company Search API")
 @RestController
 @RequestMapping("v1")
 @Slf4j
@@ -16,6 +19,13 @@ public class SearchController {
 
     private final RequestProcessingService requestProcessingService;
 
+    @Operation(
+            summary = "Fetch companies",
+            description = "Fetches companies and their associated *active* officers only."+
+                    "Search is by by company number if provided." +
+                    "Match is by exact name or company number. " +
+                    "The activeOnly request parameter is optional and can be yes or no, defaulting to no if not provided."
+    )
     @PostMapping(value = "/company", produces = "application/json")
     public CompanyResponse getCompany(@RequestHeader(name = "x-api-key") String apiKey,
                                       @RequestParam(defaultValue = "no") String activeOnly,
