@@ -1,16 +1,18 @@
 # TRUEXERCISE USAGE
-POST request to /v1/company?activeOnly={yes|no}
+POST request to `/v1/company?activeOnly={yes|no}`
 with body as specified in the requirement and x-api-key as required by the TruProxyApi.
 
 Query parameter activeOnly is optional and if not provided will default to 'no'
 
-h2 database console is available on the default path, i.e. http://localhost:8080/h2-console and can be used to verify or edit data saved by TruExercise.
+h2 database console is available on the default path, i.e. `/h2-console` and can be used to verify or edit data saved by TruExercise.
 
-OpenAPI documentation is available on the default path http://localhost:8080/v3/api-docs
+OpenAPI documentation is available on the default path `/v3/api-docs`
 
-Swagger UI available on the default path http://localhost:8080/swagger-ui/index.html
+Swagger UI available on the default path `/swagger-ui/index.html`
 
+Dynamic configuration of log levels are available using the default path `/actuator/loggers`
 
+Health information available using the default path `/actuator/health` 
 
 
 ## Goal
