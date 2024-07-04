@@ -1,6 +1,7 @@
 package org.charles.truexercise.repository;
 
 import org.charles.truexercise.dto.Officer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
@@ -22,9 +23,15 @@ public class OfficerDaoTest {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private OfficerDao officerDao;
+
+    @BeforeEach
+    public void init() {
+        officerDao = new OfficerDao(jdbcTemplate);
+    }
+
     @Test
     void verifyOfficersPopulatedCorrectlyOnFindByCompanyNumber_oneOfficerFound() {
-        OfficerDao officerDao = new OfficerDao(jdbcTemplate);
 
         ArrayList<Officer> officers = officerDao.findByCompanyNumber("1002");
 
@@ -39,7 +46,6 @@ public class OfficerDaoTest {
 
     @Test
     void verifyOfficersPopulatedCorrectlyOnFindByCompanyNumber_multipleOfficerFound() {
-        OfficerDao officerDao = new OfficerDao(jdbcTemplate);
 
         ArrayList<Officer> officers = officerDao.findByCompanyNumber("1001");
 
@@ -61,7 +67,6 @@ public class OfficerDaoTest {
 
     @Test
     void verifyDataSavedCorrectlyOnSaveOfficer() {
-        OfficerDao officerDao =new OfficerDao(jdbcTemplate);
 
         Officer officer = Officer.builder()
                 .company_number("1005")

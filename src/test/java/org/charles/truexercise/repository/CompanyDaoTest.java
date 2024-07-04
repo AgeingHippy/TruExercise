@@ -1,6 +1,7 @@
 package org.charles.truexercise.repository;
 
 import org.charles.truexercise.dto.Company;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
@@ -11,8 +12,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @JdbcTest
 @Sql(scripts = {"classpath:address_data.sql","classpath:company_data.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
@@ -21,9 +21,15 @@ public class CompanyDaoTest {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    private CompanyDao companyDao;
+
+    @BeforeEach
+    public void init() {
+        companyDao = new CompanyDao(jdbcTemplate);
+    }
+
     @Test
     void verifyCompanyPopulatedCorrectlyOnFindByCompanyNumber() {
-        CompanyDao companyDao = new CompanyDao(jdbcTemplate);
 
         Company company = companyDao.findByCompanyNumber("1003");
 
@@ -39,7 +45,6 @@ public class CompanyDaoTest {
 
     @Test
     void verifyNullReturnedWHenNotFound() {
-        CompanyDao companyDao = new CompanyDao(jdbcTemplate);
 
         Company company = companyDao.findByCompanyNumber("9999");
 
@@ -48,7 +53,6 @@ public class CompanyDaoTest {
 
     @Test
     void verifyDataSavedCorrectlyOnSaveCompany() {
-        CompanyDao companyDao = new CompanyDao(jdbcTemplate);
 
         Company company = Company.builder()
                 .company_number("8888")
@@ -66,5 +70,15 @@ public class CompanyDaoTest {
         assertEquals("pending", myList.getFirst().get("company_status"));
         assertEquals("ltd", myList.getFirst().get("company_type"));
         assertEquals(BigInteger.valueOf(1), BigInteger.valueOf((Long) myList.getFirst().get("address_id")));
+    }
+
+    @Test
+    void verifyCompanyExistsReturnsFalseWhenCompanyNotFound() {
+        assertFalse(companyDao.companyExists("9999"));
+    }
+
+    @Test
+    void verifyCompanyExistsReturnsTrueCompanyFound() {
+        assertTrue(companyDao.companyExists("1003"));
     }
 }

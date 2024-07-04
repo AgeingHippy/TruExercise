@@ -2,6 +2,7 @@ package org.charles.truexercise.repository;
 
 
 import org.charles.truexercise.dto.Address;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
@@ -22,9 +23,15 @@ public class AddressDaoTest {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private AddressDao addressDao;
+
+    @BeforeEach
+    public void init() {
+        addressDao = new AddressDao(jdbcTemplate);
+    }
+
     @Test
     void verifyAddressPopulatedCorrectlyOnFindById() {
-        AddressDao addressDao = new AddressDao(jdbcTemplate);
 
         Address address = addressDao.findById(BigInteger.ONE);
 
@@ -40,7 +47,6 @@ public class AddressDaoTest {
 
     @Test
     void verifyNullReturnedWhenNotFound() {
-        AddressDao addressDao = new AddressDao(jdbcTemplate);
 
         Address address = addressDao.findById(BigInteger.ZERO);
 
@@ -50,7 +56,6 @@ public class AddressDaoTest {
 
     @Test
     void verifyDataInsertedAndIndexReturnedCorrectlyBySaveAddress() {
-        AddressDao addressDao = new AddressDao(jdbcTemplate);
         Address address = Address.builder()
                 .premises("premises new")
                 .address_line_1("address new")
