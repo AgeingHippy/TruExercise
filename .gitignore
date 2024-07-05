@@ -4,6 +4,7 @@ build/
 logs/
 !**/src/main/**/build/
 !**/src/test/**/build/
+dockerTarget/*
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
