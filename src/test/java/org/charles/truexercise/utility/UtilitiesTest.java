@@ -1,6 +1,5 @@
 package org.charles.truexercise.utility;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -14,11 +13,6 @@ public class UtilitiesTest {
     @MethodSource("maskData")
     void testMask(String inputString, String maskedString ) {
         assertEquals(maskedString,Utilities.maskString(inputString));
-    }
-
-    @Test
-    void brokenTestToVerifyGithubWorkflowIsInFactRunningTests() {
-        assert(false);
     }
 
     private static Stream<Object[]> maskData() {
