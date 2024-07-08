@@ -42,6 +42,8 @@ README.md
 **/.nb-gradle
 **/.springBeans
 **/build
+**/gradle
+**/src
 **/dist
 **/gradle-app.setting
 **/nbbuild
@@ -60,5 +62,10 @@ pom.xml.tag
 pom.xml.versionsBackup
 release.properties
 replay_pid*
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
+logback-spring.xml
 
 !**/build/libs/TruExercise*.jar
