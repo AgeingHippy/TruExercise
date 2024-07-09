@@ -77,7 +77,7 @@ jobs:
         id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v2.6.0'
         with:
-          service: $${{ env.SERVICE }}
+          service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           image: europe-west2-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_NAME/$IMAGE_NAME:$GIT_TAG
 
