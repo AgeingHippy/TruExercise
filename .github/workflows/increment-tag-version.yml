@@ -1,0 +1,29 @@
+name: Manually increment Version Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionType:
+        type: choice
+        description: Increment major, minor or patch level?
+        options:
+          - patch
+          - minor
+          - major
+        required: true
+
+jobs:
+  git-tag-increment:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Automatic Tagging of Releases
+        id: increment-git-tag
+        run: |
+          bash ./scripts/git_update.sh -v $versionType
+
+      - name: Report
+        run: echo ${{ steps.increment-git-tag.outputs.git-tag }}
