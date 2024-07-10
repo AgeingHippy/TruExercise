@@ -70,6 +70,6 @@ else
   NEW_TAG=$CURRENT_VERSION
 fi
 
-echo "{git-tag}={$NEW_TAG}" >> $GITHUB_OUTPUT
+echo "git-tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
 exit 0
