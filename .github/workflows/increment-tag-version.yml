@@ -23,7 +23,7 @@ jobs:
       - name: Automatic Tagging of Releases
         id: increment-git-tag
         run: |
-          bash ./scripts/git_update.sh -v ${{ versionType }}
+          bash ./scripts/git_update.sh -v ${{ github.event.inputs.versionType }}
 
       - name: Report
         run: echo ${{ steps.increment-git-tag.outputs.git-tag }}
