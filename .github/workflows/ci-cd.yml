@@ -48,7 +48,7 @@ jobs:
       - name: Increment Version Tag
         id: increment-git-tag
         run: |
-          bash ./scripts/git_update.sh -v major        
+          bash ./scripts/git_update.sh -v patch 
 
       - name: Build Docker Image
         run: docker build -t $IMAGE_NAME:latest .
