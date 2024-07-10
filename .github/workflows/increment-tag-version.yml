@@ -24,6 +24,7 @@ jobs:
         id: increment-git-tag
         run: |
           bash ./scripts/git_update.sh -v ${{ github.event.inputs.versionType }}
+          echo "Tag we will be using is " ${{ steps.increment-git-tag.outputs.git-tag }}
 
       - name: Report
         run: echo ${{ steps.increment-git-tag.outputs.git-tag }}
