@@ -1,0 +1,44 @@
+# Trigger workflow manually for testing purposes
+
+name: Trigger Manual Cloud Run Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      IMAGE_NAME: tru-exercise
+      REPOSITORY_NAME: truexercise-repository # Google Cloud Artifact Registry Repository Name
+      PROJECT_ID: truexercise # Google Cloud Project ID
+      SERVICE: tru-exercise # Google Cloud Run Service Name
+      REGION: europe-west2 # Google Cloud Run Service Region Name
+
+    steps:
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
+
+      - name: Setup GCI
+        uses: google-github-actions/setup-gcloud@v2.1.0
+
+      - name: Configure Docker Client
+        run: |-
+          gcloud auth configure-docker europe-west2-docker.pkg.dev
+
+      - name: Deploy to Cloud Run
+        id: 'deploy'
+        uses: 'google-github-actions/deploy-cloudrun@v2.6.0'
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.REGION }}
+          image: europe-west2-docker.pkg.dev/truexercise/truexercise-repository/$tru-exercise:latest
+
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
