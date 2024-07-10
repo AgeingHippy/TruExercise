@@ -45,13 +45,13 @@ jobs:
       - name: Build with Gradle Wrapper
         run: ./gradlew build
 
-      - name: Build Docker Image
-        run: docker build -t $IMAGE_NAME:latest .
-
-      - name: Automatic Tagging of Releases
+      - name: Increment Version Tag
         id: increment-git-tag
         run: |
-          bash ./scripts/git_update.sh -v patch
+          bash ./scripts/git_update.sh -v major        
+
+      - name: Build Docker Image
+        run: docker build -t $IMAGE_NAME:latest .
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
@@ -85,21 +85,21 @@ jobs:
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
 
-#  dependency-submission:
-#
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: write
-#
-#    steps:
-#    - uses: actions/checkout@v4
-#    - name: Set up JDK 21
-#      uses: actions/setup-java@v4
-#      with:
-#        java-version: '21'
-#        distribution: 'temurin'
-#
-#    # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
-#    # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
-#    - name: Generate and submit dependency graph
-#      uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+  dependency-submission:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+    # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
+    - name: Generate and submit dependency graph
+      uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0

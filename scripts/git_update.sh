@@ -47,18 +47,14 @@ NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
 echo "($VERSION) updating $CURRENT_VERSION to $NEW_TAG"
 
 # get current hash and see if it already has a tag
-echo "DEBUG - getting head commit details"
 GIT_COMMIT=`git rev-parse HEAD`
-echo "DEBUG - Determining if a tag is required"
 NEEDS_TAG=`git describe --contains $GIT_COMMIT 2>/dev/null`
 
 # only tag if no tag already
 if [ -z "$NEEDS_TAG" ]; then
   echo "Tagged with $NEW_TAG"
   git tag $NEW_TAG
-  echo "DEBUG - > git push --tags"
   git push --tags
-  echo "DEBUG - > git push"
   git push
 else
   echo "Already a tag on this commit. Returning existing tag. $CURRENT_VERSION"
