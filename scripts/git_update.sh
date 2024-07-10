@@ -25,11 +25,10 @@ if [[ $CURRENT_VERSION =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]
 then
   # replace . with space so can split into an array and only work on numeric part
   CURRENT_VERSION_PARTS=(${BASH_REMATCH[1]//./ })
-
   # get number parts
   VNUM1=${CURRENT_VERSION_PARTS[0]}
   VNUM2=${CURRENT_VERSION_PARTS[1]}
-VNUM3=${CURRENT_VERSION_PARTS[2]}
+  VNUM3=${CURRENT_VERSION_PARTS[2]}
 else
   echo "Invalid tag format $CURRENT_VERSION expecting '^v([0-9]+\.[0-9]+\.[0-9]+)$'"
   exit 1
@@ -37,7 +36,7 @@ fi
 
 if [[ $VERSION == 'major' ]]
 then
-  VNUM1=v$((VNUM1+1))
+  VNUM1=$((VNUM1+1))
   VNUM2=0
   VNUM3=0
 elif [[ $VERSION == 'minor' ]]
