@@ -18,8 +18,6 @@ jobs:
   build-deploy:
 
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     env:
       IMAGE_NAME: tru-exercise
       REPOSITORY_NAME: truexercise-repository # Google Cloud Artifact Registry Repository Name
