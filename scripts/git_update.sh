@@ -20,13 +20,20 @@ then
 fi
 echo "Current Version: $CURRENT_VERSION"
 
-# replace . with space so can split into an array
-CURRENT_VERSION_PARTS=(${CURRENT_VERSION//./ })
+#verify tag format is as expected
+if [[ $CURRENT_VERSION =~ ^v([0-9]+\.[0-9]+\.[0-9]+)$ ]]
+then
+  # replace . with space so can split into an array and only work on numeric part
+  CURRENT_VERSION_PARTS=(${BASH_REMATCH[1]//./ })
 
-# get number parts
-VNUM1=${CURRENT_VERSION_PARTS[0]}
-VNUM2=${CURRENT_VERSION_PARTS[1]}
+  # get number parts
+  VNUM1=${CURRENT_VERSION_PARTS[0]}
+  VNUM2=${CURRENT_VERSION_PARTS[1]}
 VNUM3=${CURRENT_VERSION_PARTS[2]}
+else
+  echo "Invalid tag format $CURRENT_VERSION expecting '^v([0-9]+\.[0-9]+\.[0-9]+)$'"
+  exit 1
+fi
 
 if [[ $VERSION == 'major' ]]
 then
@@ -46,7 +53,7 @@ else
 fi
 
 # create new tag
-NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
+NEW_TAG="v$VNUM1.$VNUM2.$VNUM3"
 echo "($VERSION) updating $CURRENT_VERSION to $NEW_TAG"
 
 # get current hash and see if it already has a tag
