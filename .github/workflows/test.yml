@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-deploy:
+  deploy-test:
 
     runs-on: ubuntu-latest
     permissions:
@@ -16,7 +16,8 @@ jobs:
       REPOSITORY_NAME: truexercise-repository # Google Cloud Artifact Registry Repository Name
       PROJECT_ID: truexercise # Google Cloud Project ID
       SERVICE: tru-exercise # Google Cloud Run Service Name
-      REGION: europe-west2 # Google Cloud Run Service Region Name
+      GCR_REGION: europe-west2 # Google Cloud Run Service Region Name
+      GAR_REGION: europe-west2 # Google Artifact Registry Region Name
 
     steps:
 
@@ -37,8 +38,8 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v2.6.0'
         with:
           service: ${{ env.SERVICE }}
-          region: ${{ env.REGION }}
-          image: europe-west2-docker.pkg.dev/truexercise/truexercise-repository/tru-exercise:latest
+          region: ${{ env.GCR_REGION }}
+          image: $GAR_REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_NAME/$IMAGE_NAME:latest
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
