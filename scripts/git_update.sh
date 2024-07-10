@@ -57,7 +57,7 @@ if [ -z "$NEEDS_TAG" ]; then
   git push --tags
   git push
 else
-  echo "Already a tag on this commit. Returning existing tag. " +$CURRENT_VERSION
+  echo "Already a tag on this commit. Returning existing tag. $CURRENT_VERSION"
   NEW_TAG=$CURRENT_VERSION
 fi
 
