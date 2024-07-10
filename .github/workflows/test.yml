@@ -38,7 +38,7 @@ jobs:
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
-          image: europe-west2-docker.pkg.dev/truexercise/truexercise-repository/$tru-exercise:latest
+          image: europe-west2-docker.pkg.dev/truexercise/truexercise-repository/tru-exercise:latest
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
