@@ -39,7 +39,7 @@ jobs:
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.GCR_REGION }}
-          image: ${{ GAR_REGION }}-docker.pkg.dev/${{ PROJECT_ID }}/${{ REPOSITORY_NAME }}/${{ IMAGE_NAME }}:latest
+          image: ${{ env.GAR_REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME }}/${{ env.IMAGE_NAME }}:latest
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
