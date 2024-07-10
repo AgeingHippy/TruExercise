@@ -5,6 +5,7 @@ with body as specified in the requirement and x-api-key as required by the TruPr
 Query parameter activeOnly is optional and if not provided will default to 'no'
 
 h2 database console is available on the default path, i.e. `/h2-console` and can be used to verify or edit data saved by TruExercise.
+*Not available in online hosted version as running through Docker I'm afraid*
 
 OpenAPI documentation is available on the default path `/v3/api-docs`
 
