@@ -1,6 +1,5 @@
 package com.ageinghippy.truexercise.controller;
 
-import com.ageinghippy.truexercise.controller.SearchController;
 import com.ageinghippy.truexercise.TruExerciseApplication;
 import com.ageinghippy.truexercise.dto.Company;
 import com.ageinghippy.truexercise.dto.CompanyRequest;
@@ -15,6 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -161,10 +161,10 @@ public class SearchControllerIntegrationTest {
 
         //verify addresses written correctly
         List<Map<String, Object>> addressList = jdbcTemplate.queryForList("SELECT * FROM address");
-        assertEquals(4,addressList.size());
+        assertEquals(4, addressList.size());
 
         //verify company # 10432398 address written correctly
-        Map<String,Object> address_10432398 = addressList.stream()
+        Map<String, Object> address_10432398 = addressList.stream()
                 .filter(address -> companiesList.getFirst().get("address_id").equals(address.get("address_id")))
                 .findAny()
                 .orElse(null);
@@ -177,20 +177,20 @@ public class SearchControllerIntegrationTest {
 
         //Verify officers
         List<Map<String, Object>> officerList = jdbcTemplate.queryForList("SELECT * FROM officer");
-        assertEquals(2,officerList.size());
+        assertEquals(2, officerList.size());
         //verify company # 10432398 Officer written correctly
-        Map<String,Object> officer_10432398_db = officerList.stream()
+        Map<String, Object> officer_10432398_db = officerList.stream()
                 .filter(officer -> company_11686010.getCompany_number().equals(officer.get("company_number")))
                 .findAny()
                 .orElse(null);
         assertNotNull(officer_10432398_db);
-        assertEquals(officer_10432398.getName(),officer_10432398_db.get("name"));
-        assertEquals(officer_10432398.getOfficer_role(),officer_10432398_db.get("officer_role"));
-        assertEquals(officer_10432398.getCompany_number(),officer_10432398_db.get("company_number"));
-        assertEquals(officer_10432398.getAppointed_on(),officer_10432398_db.get("appointed_on"));
+        assertEquals(officer_10432398.getName(), officer_10432398_db.get("name"));
+        assertEquals(officer_10432398.getOfficer_role(), officer_10432398_db.get("officer_role"));
+        assertEquals(officer_10432398.getCompany_number(), officer_10432398_db.get("company_number"));
+        assertEquals(officer_10432398.getAppointed_on(), officer_10432398_db.get("appointed_on"));
 
         //verify officer_10432398 address saved correctly
-        Map<String,Object> address_officer = addressList.stream()
+        Map<String, Object> address_officer = addressList.stream()
                 .filter(address -> officer_10432398_db.get("address_id").equals(address.get("address_id")))
                 .findAny()
                 .orElse(null);
@@ -202,6 +202,48 @@ public class SearchControllerIntegrationTest {
         assert (Objects.equals(officer_10432398.getAddress().getCountry(), address_officer.get("country")));
     }
 
-    //todo -write integration test fetching data from local db
+    @Test
+    @Sql(scripts = {"classpath:address_data.sql", "classpath:company_data.sql", "classpath:officer_data.sql"},
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = {"classpath:delete_test_data.sql"},
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void ensureDataFetchedFromDatabaseFirstIfCompanyNumberProvided() {
+        //Given Company # 1002 exists in the database
+
+        // WHEN we fetch a company by company number
+        CompanyResponse response =
+                searchController.getCompany("TestApiKey", "no", CompanyRequest.builder().companyNumber("1002").build());
+
+        //THEN The company data fetched from the database is returned
+        //verify response content
+        assert (response.getTotal_results() == 1);
+        assert (response.getItems().size() == 1);
+
+        //verify company 11686010
+        Company company_1002 = response.getItems().getFirst();
+        assert (Objects.equals(company_1002.getTitle(), "company two"));
+        assert (Objects.equals(company_1002.getCompany_number(), "1002"));
+        assert (Objects.equals(company_1002.getCompany_status(), "active"));
+        assert (Objects.equals(company_1002.getCompany_type(), "type 2"));
+        assert (Objects.equals(company_1002.getDate_of_creation(), "2001-02-12"));
+        //verify company 11686010 address
+        assert (Objects.equals(company_1002.getAddress().getPremises(), "premises 2"));
+        assert (Objects.equals(company_1002.getAddress().getAddress_line_1(), "address two"));
+        assert (Objects.equals(company_1002.getAddress().getLocality(), "locality #2"));
+        assert (Objects.equals(company_1002.getAddress().getPostal_code(), "PC02"));
+        assert (Objects.equals(company_1002.getAddress().getCountry(), "UK2"));
+        //verify company 11686010 officers
+        assert (company_1002.getOfficers().size() == 1);
+        Officer officer_1002 = company_1002.getOfficers().getFirst();
+        assert (Objects.equals(officer_1002.getName(), "officer 2001"));
+        assert (Objects.equals(officer_1002.getOfficer_role(), "role 21"));
+        assert (Objects.equals(officer_1002.getAppointed_on(), "2001-02-11"));
+        //Verify Officer Address
+        assert (Objects.equals(officer_1002.getAddress().getPremises(), "premises 7"));
+        assert (Objects.equals(officer_1002.getAddress().getAddress_line_1(), "address seven"));
+        assert (Objects.equals(officer_1002.getAddress().getLocality(), "locality #7"));
+        assert (Objects.equals(officer_1002.getAddress().getPostal_code(), "PC07"));
+        assert (Objects.equals(officer_1002.getAddress().getCountry(), "UK7"));
+    }
 
 }
