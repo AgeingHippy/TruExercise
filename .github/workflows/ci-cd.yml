@@ -5,28 +5,42 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Java CI-CD with Gradle and Docker to CCP
-# Only occur on push to main. build and deploy (in progress...)
+name: Java CI-CD with Gradle and Docker to GCR
+# Only occur on push to main. build and deploy to Google Cloud Run
 
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-
+env:
+  IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
+  REPOSITORY_NAME: ${{ vars.CLOUD_REPOSITORY_NAME }} # Google Cloud Artifact Registry Repository Name
+  PROJECT_ID: ${{ vars.CLOUD_PROJECT_ID }} # Google Cloud Project ID
+  SERVICE: ${{ vars.CLOUD_SERVICE_NAME }} # Google Cloud Run Service Name
+  GCR_REGION: ${{ vars.CLOUD_REGION }} # Google Cloud Run Service Region Name
+  GAR_REGION: ${{ vars.CLOUD_REGION }} # Google Artifact Registry Region Name
 
 jobs:
   build-deploy:
 
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: tru-exercise
-      REPOSITORY_NAME: truexercise-repository # Google Cloud Artifact Registry Repository Name
-      PROJECT_ID: truexercise # Google Cloud Project ID
-      SERVICE: tru-exercise # Google Cloud Run Service Name
-      GCR_REGION: europe-west2 # Google Cloud Run Service Region Name
-      GAR_REGION: europe-west2 # Google Artifact Registry Region Name
 
     steps:
+      - name: Display Variables
+        run: |
+          echo "Image Name : $IMAGE_NAME"
+          echo "Repository Name : $REPOSITORY_NAME"
+          echo "Project ID : $PROJECT_ID"
+          echo "Service Name : $SERVICE"
+          echo "Cloud Run Service Region : $GCR_REGION"
+          echo "Artifact Registry Region : $GAR_REGION"
+
+      - name: Check Variables Set
+        if:  ${{ ! ( env.IMAGE_NAME && env.REPOSITORY_NAME && env.PROJECT_ID && env.SERVICE && env.GCR_REGION && env.GAR_REGION ) }}
+        run: |
+          echo "Not all variables are set"
+          exit -1
+
       - uses: actions/checkout@v4
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -92,14 +106,14 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
 
-    # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
-    # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
-    - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
