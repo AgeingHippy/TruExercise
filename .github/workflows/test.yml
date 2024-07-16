@@ -11,7 +11,7 @@ env:
   SERVICE: ${{ vars.CLOUD_SERVICE_NAME }} # Google Cloud Run Service Name
   GCR_REGION: ${{ vars.CLOUD_REGION }} # Google Cloud Run Service Region Name
   GAR_REGION: ${{ vars.CLOUD_REGION }} # Google Artifact Registry Region Name
-  NULL_VALUE: $${ vars.DOES_NOT_EXIST }}
+  NULL_VALUE: ""
 
 jobs:
   test-job:
