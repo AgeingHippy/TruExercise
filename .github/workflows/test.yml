@@ -26,7 +26,6 @@ jobs:
           echo "Service Name : $SERVICE"
           echo "Cloud Run Service Region : $GCR_REGION"
           echo "Artifact Registry Region : $GAR_REGION"
-          echo "Null Value : $NULL_VALUE"
 
       - name: Check Variables Set
         if:  ${{ ! ( env.IMAGE_NAME && env.REPOSITORY_NAME && env.PROJECT_ID && env.SERVICE && env.GCR_REGION && env.GAR_REGION ) }}
