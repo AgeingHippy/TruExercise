@@ -5,12 +5,12 @@ name: Trigger Manual Test
 on:
   workflow_dispatch:
 env:
-  IMAGE_NAME: ${{ var.DOCKER_IMAGE_NAME }}
-  REPOSITORY_NAME: ${{ var.CLOUD_REPOSITORY_NAME }} # Google Cloud Artifact Registry Repository Name
-  PROJECT_ID: ${{ var.CLOUD_PROJECT_ID }} # Google Cloud Project ID
-  SERVICE: ${{ var.CLOUD_SERVICE_NAME }} # Google Cloud Run Service Name
-  GCR_REGION: ${{ var.CLOUD_REGION }} # Google Cloud Run Service Region Name
-  GAR_REGION: ${{ var.CLOUD_REGION }} # Google Artifact Registry Region Name
+  IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
+  REPOSITORY_NAME: ${{ vars.CLOUD_REPOSITORY_NAME }} # Google Cloud Artifact Registry Repository Name
+  PROJECT_ID: ${{ vars.CLOUD_PROJECT_ID }} # Google Cloud Project ID
+  SERVICE: ${{ vars.CLOUD_SERVICE_NAME }} # Google Cloud Run Service Name
+  GCR_REGION: ${{ vars.CLOUD_REGION }} # Google Cloud Run Service Region Name
+  GAR_REGION: ${{ vars.CLOUD_REGION }} # Google Artifact Registry Region Name
 
 jobs:
   test-job:
