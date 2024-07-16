@@ -28,7 +28,7 @@ jobs:
           echo "Artifact Registry Region : $GAR_REGION"
 
       - name: Check Variables Set
-        if:  ! ( IMAGE_NAME && REPOSITORY_NAME && PROJECT_ID && SERVICE && GCR_REGION && GAR_REGION )
+        if:  ${{ ! ( env.IMAGE_NAME && env.REPOSITORY_NAME ) }}
         run: exit -1
 
       - name: success-continuation
