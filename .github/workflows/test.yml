@@ -27,3 +27,9 @@ jobs:
           echo "Cloud Run Service Region : $GCR_REGION"
           echo "Artifact Registry Region : $GAR_REGION"
 
+      - name: Check Variables Set
+        if: ${{ ! ( IMAGE_NAME && REPOSITORY_NAME && PROJECT_ID && SERVICE && GCR_REGION && GAR_REGION ) }}
+        run: exit -1
+
+      - name: success-continuation
+        run: echo "All variables are specified"
