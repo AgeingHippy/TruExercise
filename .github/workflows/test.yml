@@ -23,7 +23,7 @@ jobs:
           echo "Image Name : $IMAGE_NAME"
           echo "Repository Name : $REPOSITORY_NAME"
           echo "Project ID : $PROJECT_ID"
-          echo "Service Name  $SERVICE
+          echo "Service Name : $SERVICE"
           echo "Cloud Run Service Region : $GCR_REGION"
           echo "Artifact Registry Region : $GAR_REGION"
 
