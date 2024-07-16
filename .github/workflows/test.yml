@@ -4,20 +4,26 @@ name: Trigger Manual Test
 
 on:
   workflow_dispatch:
+env:
+  IMAGE_NAME: ${{ var.DOCKER_IMAGE_NAME }}
+  REPOSITORY_NAME: ${{ var.CLOUD_REPOSITORY_NAME }} # Google Cloud Artifact Registry Repository Name
+  PROJECT_ID: ${{ var.CLOUD_PROJECT_ID }} # Google Cloud Project ID
+  SERVICE: ${{ var.CLOUD_SERVICE_NAME }} # Google Cloud Run Service Name
+  GCR_REGION: ${{ var.CLOUD_REGION }} # Google Cloud Run Service Region Name
+  GAR_REGION: ${{ var.CLOUD_REGION }} # Google Artifact Registry Region Name
 
 jobs:
-  git-tag-increment:
+  test-job:
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Automatic Tagging of Releases
-        id: increment-git-tag
+      - name: Display Variables
         run: |
-          bash ./scripts/git_update.sh -v patch
-
-      - name: Report
-        run: echo ${{ steps.increment-git-tag.outputs.git-tag }}
+          echo "Image Name : $IMAGE_NAME"
+          echo "Repository Name : $REPOSITORY_NAME"
+          echo "Project ID : $PROJECT_ID"
+          echo "Service Name  $SERVICE
+          echo "Cloud Run Service Region : $GCR_REGION"
+          echo "Artifact Registry Region : $GAR_REGION"
 
