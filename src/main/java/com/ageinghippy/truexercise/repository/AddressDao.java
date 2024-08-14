@@ -7,13 +7,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.Objects;
 
 @Repository
 @Slf4j
@@ -43,7 +41,7 @@ public class AddressDao {
 
     public BigInteger saveAddress(Address address) {
         log.trace("AddressDao.saveAddress {}", address);
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+        GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(saveAddress_SQL, Statement.RETURN_GENERATED_KEYS);
@@ -53,8 +51,8 @@ public class AddressDao {
             ps.setString(4, address.getPostal_code());
             ps.setString(5, address.getCountry());
             return ps;
-        }, keyHolder);
+        }, generatedKeyHolder);
 
-        return BigInteger.valueOf(Objects.requireNonNull(keyHolder.getKey()).longValue());
+        return BigInteger.valueOf((Long) generatedKeyHolder.getKeyList().getFirst().get("address_id"));
     }
 }
