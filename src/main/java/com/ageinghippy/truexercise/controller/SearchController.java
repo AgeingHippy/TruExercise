@@ -31,6 +31,9 @@ public class SearchController {
     @Value("${truexercise.env.external.property}")
     private String externalProperty;
 
+    @Value("${truexercise.db.password}")
+    private String truexerciseDbPassword;
+
     @Operation(
             summary = "Fetch companies",
             description = "Fetches companies and their associated *active* officers only."+
@@ -75,6 +78,7 @@ public class SearchController {
                 "truexercise.env.property", truexerciseEnvProperty
                 ,"truexercise.env.internal.property", internalProperty
                 , "truexercise.env.external.property", externalProperty
+                , "truexercise.db.password", truexerciseDbPassword
         );
     }
 
