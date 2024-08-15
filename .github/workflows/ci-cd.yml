@@ -88,9 +88,9 @@ jobs:
           docker push $GAR_REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_NAME/$IMAGE_NAME:latest
           docker push $GAR_REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_NAME/$IMAGE_NAME:$GIT_TAG
 
-      - name: Clear Existing Coud Run Environment Variables
-        run: |
-          gcloud run deploy --clear-env-vars
+      # - name: Clear Existing Coud Run Environment Variables
+      #   run: |
+      #     gcloud run deploy --clear-env-vars
 
       - name: Deploy to Cloud Run
         id: 'deploy'
@@ -102,6 +102,7 @@ jobs:
           env_vars: |
             SPRING_PROFILES_ACTIVE=prod
             TRUEXERCISE_ENV_EXTERNAL_PROPERTY=external-production-property
+          env_vars_update_strategy: overwrite
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
