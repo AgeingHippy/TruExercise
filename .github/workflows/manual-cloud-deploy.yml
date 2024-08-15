@@ -54,6 +54,10 @@ jobs:
             SPRING_PROFILES_ACTIVE=prod
             TRUEXERCISE_ENV_EXTERNAL_PROPERTY=${{ vars.TRUEXERCISE_ENV_EXTERNAL_PROPERTY }}
           env_vars_update_strategy: overwrite
+          secrets: |
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          secrets_update_strategy: overwrite
+
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
