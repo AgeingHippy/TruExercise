@@ -97,7 +97,7 @@ jobs:
           image: ${{ env.GAR_REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME }}/${{ env.IMAGE_NAME }}:latest
           env_vars: |
             SPRING_PROFILES_ACTIVE=prod
-            TRUEXERCISE_ENV_PROPERTY=external-production-property
+            TRUEXERCISE_ENV_EXTERNAL_PROPERTY=external-production-property
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
