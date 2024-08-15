@@ -55,7 +55,7 @@ jobs:
             TRUEXERCISE_ENV_EXTERNAL_PROPERTY=${{ vars.TRUEXERCISE_ENV_EXTERNAL_PROPERTY }}
           env_vars_update_strategy: overwrite
           secrets: |
-            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}:latest
           secrets_update_strategy: overwrite
 
 
