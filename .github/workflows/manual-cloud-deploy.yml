@@ -1,0 +1,59 @@
+name: Deploy existing image in Google Artifact Registry to Google Cloud Run
+
+on:
+  workflow_dispatch:
+env:
+  IMAGE_NAME: ${{ vars.DOCKER_IMAGE_NAME }}
+  REPOSITORY_NAME: ${{ vars.CLOUD_REPOSITORY_NAME }} # Google Cloud Artifact Registry Repository Name
+  PROJECT_ID: ${{ vars.CLOUD_PROJECT_ID }} # Google Cloud Project ID
+  SERVICE: ${{ vars.CLOUD_SERVICE_NAME }} # Google Cloud Run Service Name
+  GCR_REGION: ${{ vars.CLOUD_REGION }} # Google Cloud Run Service Region Name
+  GAR_REGION: ${{ vars.CLOUD_REGION }} # Google Artifact Registry Region Name
+
+jobs:
+  cloud-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Variables
+        run: |
+          echo "Image Name : $IMAGE_NAME"
+          echo "Repository Name : $REPOSITORY_NAME"
+          echo "Project ID : $PROJECT_ID"
+          echo "Service Name : $SERVICE"
+          echo "Cloud Run Service Region : $GCR_REGION"
+          echo "Artifact Registry Region : $GAR_REGION"
+
+      - name: Check Variables Set
+        if:  ${{ ! ( env.IMAGE_NAME && env.REPOSITORY_NAME && env.PROJECT_ID && env.SERVICE && env.GCR_REGION && env.GAR_REGION ) }}
+        run: |
+          echo "Not all variables are set"
+          exit -1
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
+
+      - name: Setup GCI
+        uses: google-github-actions/setup-gcloud@v2.1.0
+
+      - name: Configure Docker Client
+        run: |-
+          gcloud auth configure-docker europe-west2-docker.pkg.dev
+
+      - name: Deploy to Cloud Run
+        id: 'deploy'
+        uses: 'google-github-actions/deploy-cloudrun@v2.6.0'
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.GCR_REGION }}
+          image: ${{ env.GAR_REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME }}/${{ env.IMAGE_NAME }}:latest
+          env_vars: |
+            SPRING_PROFILES_ACTIVE=prod
+            TRUEXERCISE_ENV_EXTERNAL_PROPERTY=external-production-property-XX
+          env_vars_update_strategy: overwrite
+
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
