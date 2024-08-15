@@ -95,6 +95,7 @@ jobs:
           service: ${{ env.SERVICE }}
           region: ${{ env.GCR_REGION }}
           image: ${{ env.GAR_REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME }}/${{ env.IMAGE_NAME }}:latest
+          flags: '--clear-env-vars'
           env_vars: |
             SPRING_PROFILES_ACTIVE=prod
             TRUEXERCISE_ENV_EXTERNAL_PROPERTY=external-production-property
