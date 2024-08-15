@@ -39,9 +39,9 @@ jobs:
       - name: Setup GCI
         uses: google-github-actions/setup-gcloud@v2.1.0
 
-      - name: Configure Docker Client
-        run: |-
-          gcloud auth configure-docker europe-west2-docker.pkg.dev
+      # - name: Configure Docker Client
+      #   run: |-
+      #     gcloud auth configure-docker europe-west2-docker.pkg.dev
 
       - name: Deploy to Cloud Run
         id: 'deploy'
