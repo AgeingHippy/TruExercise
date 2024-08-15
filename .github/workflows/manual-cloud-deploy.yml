@@ -52,7 +52,7 @@ jobs:
           image: ${{ env.GAR_REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME }}/${{ env.IMAGE_NAME }}:latest
           env_vars: |
             SPRING_PROFILES_ACTIVE=prod
-            TRUEXERCISE_ENV_EXTERNAL_PROPERTY=${{ TRUEXERCISE_ENV_EXTERNAL_PROPERTY }}
+            TRUEXERCISE_ENV_EXTERNAL_PROPERTY=${{ vars.TRUEXERCISE_ENV_EXTERNAL_PROPERTY }}
           env_vars_update_strategy: overwrite
 
       - name: Show Output
