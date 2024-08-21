@@ -8,31 +8,16 @@ import com.ageinghippy.truexercise.dto.CompanyRequest;
 import com.ageinghippy.truexercise.dto.CompanyResponse;
 import com.ageinghippy.truexercise.service.RequestProcessingService;
 import com.ageinghippy.truexercise.exception.InternalServerException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @Tag(name="Company Search", description="TruExercise Company Search API")
 @RestController
 @RequestMapping("v1")
 @Slf4j
-@RequiredArgsConstructor //todo - @AllArgsConstructor temporarily removed due to injected property value
+@RequiredArgsConstructor
 public class SearchController {
 
     private final RequestProcessingService requestProcessingService;
-
-    @Value("${truexercise.env.property}")
-    private String truexerciseEnvProperty;
-
-    @Value("${truexercise.env.internal.property}")
-    private String internalProperty;
-
-    @Value("${truexercise.env.external.property}")
-    private String externalProperty;
-
-    @Value("${truexercise.db.password}")
-    private String truexerciseDbPassword;
 
     @Operation(
             summary = "Fetch companies",
@@ -70,16 +55,6 @@ public class SearchController {
         }
 
         return companyResponse;
-    }
-
-    @GetMapping(value="/hello")
-    public Map<String,String> printProperties() {
-        return Map.of(
-                "truexercise.env.property", truexerciseEnvProperty
-                ,"truexercise.env.internal.property", internalProperty
-                , "truexercise.env.external.property", externalProperty
-                , "truexercise.db.password", truexerciseDbPassword
-        );
     }
 
 }

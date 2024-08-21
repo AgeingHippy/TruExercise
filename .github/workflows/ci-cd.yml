@@ -100,13 +100,14 @@ jobs:
           region: ${{ env.GCR_REGION }}
           image: ${{ env.GAR_REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_NAME }}/${{ env.IMAGE_NAME }}:latest
           env_vars: |
-            SPRING_PROFILES_ACTIVE=prod
-            TRUEXERCISE_ENV_EXTERNAL_PROPERTY=${{ vars.TRUEXERCISE_ENV_EXTERNAL_PROPERTY }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            SPRING_PROFILES_ACTIVE=h2
+#            DB_HOSTNAME=${{ vars.DB_HOSTNAME }}
+#            DB_USERNAME=${{ vars.DB_USERNAME }}
+#            DB_PASSWORD=${{ secrets.DB_PASSWORD}}
           env_vars_update_strategy: overwrite
           # ToDo -  secrets need to be set up in GCloud Secrets Manager before they can be used
           # secrets: |
-          #   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}:latest
+          #   DB_PASSWORD: DB_PASSWORD:latest
           # secrets_update_strategy: overwrite
 
       - name: Show Output
